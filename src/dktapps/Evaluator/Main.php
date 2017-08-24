@@ -9,18 +9,14 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 
 class Main extends PluginBase{
-	
-	public function onEnable(){
 
-	}
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
+		if($command->getName() === "eval"){
+			eval(implode(" ", $args));
 
-	public function onCommand(CommandSender $sender, Command $command, $label, array $args){
-		switch($command->getName()){
-			case "eval":
-				eval(implode(" ", $args));
-				return true;
-			default:
-				return false;
+			return true;
 		}
+
+		return false;
 	}
 }
